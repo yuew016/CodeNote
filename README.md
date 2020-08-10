@@ -1,4 +1,4 @@
-# READEME.md
+# READEME
 
 This is my code study note.
 

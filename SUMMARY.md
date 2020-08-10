@@ -1,6 +1,6 @@
 # Table of contents
 
-* [READEME.md](README.md)
+* [READEME](README.md)
 * [0. python Q&A](0.-python-q-and-a.md)
 * [1. Binary Search](1.-binary-search-1.md)
 * [2. Binary Tree & Divide Conquer](2.-binary-tree-and-divide-conquer.md)
