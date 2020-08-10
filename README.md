@@ -1,8 +1,10 @@
 # Summary
 
-*(This is my code study note.)[SUMMARY.md]
+This is my code study note.
 
 You can also read on Gitbook: [https://wangyue016.gitbook.io/codenote/](https://wangyue016.gitbook.io/codenote/)
+
+{% page-ref page="./" %}
 
 {% page-ref page="0.-python-q-and-a.md" %}
 
@@ -19,6 +21,4 @@ You can also read on Gitbook: [https://wangyue016.gitbook.io/codenote/](https://
 {% page-ref page="7.-hash-and-heap.md" %}
 
 {% page-ref page="8.-math.md" %}
-
-
 

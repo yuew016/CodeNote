@@ -8,6 +8,6 @@
 * [4. Depth First Search](4.-depth-first-search.md)
 * [5. Linked List & Array](5.-linked-list-and-array.md)
 * [6. Two Pointers](6.-two-pointers.md)
-* [7. Hash & Heap](7.-hash-and-heap.md)
+* [7. Hash & Heap& Stack](7.-hash-and-heap.md)
 * [8. Math](8.-math.md)
 
