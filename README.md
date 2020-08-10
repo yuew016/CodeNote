@@ -18,7 +18,7 @@ You can also read on Gitbook: [https://wangyue016.gitbook.io/codenote/](https://
 
 {% page-ref page="6.-two-pointers.md" %}
 
-{% page-ref page="7.-hash-and-heap.md" %}
+{% page-ref page="7.-hash-and-heap-and-stack.md" %}
 
 {% page-ref page="8.-math.md" %}
 
