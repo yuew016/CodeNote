@@ -6,19 +6,19 @@ You can also read on Gitbook: [https://wangyue016.gitbook.io/codenote/](https://
 
 {% page-ref page="./" %}
 
-{% page-ref page="0.-python-q-and-a.md" %}
+{% page-ref page="python-q-and-a.md" %}
 
-{% page-ref page="1.-binary-search-1.md" %}
+{% page-ref page="algorithms/binary-search-1.md" %}
 
-{% page-ref page="3.-breadth-first-search.md" %}
+{% page-ref page="algorithms/breadth-first-search.md" %}
 
-{% page-ref page="4.-depth-first-search.md" %}
+{% page-ref page="algorithms/depth-first-search.md" %}
 
-{% page-ref page="5.-linked-list-and-array.md" %}
+{% page-ref page="data-structure-1/linked-list-and-array.md" %}
 
-{% page-ref page="6.-two-pointers.md" %}
+{% page-ref page="algorithms/two-pointers.md" %}
 
-{% page-ref page="7.-hash-and-heap-and-stack.md" %}
+{% page-ref page="data-structure-1/hash-and-heap-and-stack.md" %}
 
-{% page-ref page="8.-math.md" %}
+{% page-ref page="math.md" %}
 

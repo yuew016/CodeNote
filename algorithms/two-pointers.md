@@ -1,4 +1,4 @@
-# 6. Two Pointers
+# Two Pointers
 
 ## •6.1 同向双指针
 

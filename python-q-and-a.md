@@ -1,4 +1,4 @@
-# 0. python Q&A
+# python Q&A
 
 ## 0.1 list, set, dict, tuple
 
@@ -158,4 +158,17 @@ str.split(str="", num=string.count(str)).
 
 * str -- 分隔符，默认为所有的空字符，包括空格、换行\(\n\)、制表符\(\t\)等。
 * num -- 分割次数。默认为 -1, 即分隔所有
+
+## 0.7 input, output
+
+```python
+if __name__ == '__main__':
+    T = int(input())
+
+    for _ in range(T):
+        n=int(input())
+        arr = [int(x) for x in input().split()]
+
+        print(maxSum(arr,n))
+```
 

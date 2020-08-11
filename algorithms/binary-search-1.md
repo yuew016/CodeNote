@@ -1,4 +1,4 @@
-# 1. Binary Search
+# Binary Search
 
 ## 1.1 Defination
 
