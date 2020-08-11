@@ -1,4 +1,4 @@
-# Binary Tree & Divide Conquer
+# 1.5 Binary Tree & Divide Conquer
 
 二叉树n结点， 高度为\[logN, N\]
 

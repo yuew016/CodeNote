@@ -1,4 +1,4 @@
-# Hash & Heap
+# 2.3 Hash & Heap
 
 ## Hash
 

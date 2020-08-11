@@ -1,4 +1,4 @@
-# Math
+# 3. Math
 
 ## **A common method to rotate the image**
 

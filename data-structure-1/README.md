@@ -1,4 +1,4 @@
-# Data Structure
+# 2. Data Structure
 
 {% page-ref page="stack.md" %}
 

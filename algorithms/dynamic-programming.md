@@ -1,4 +1,4 @@
-# Dynamic Programming
+# 1.6 Dynamic Programming
 
 ## [Decode Ways](https://leetcode.com/problems/decode-ways/)
 

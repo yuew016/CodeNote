@@ -1,4 +1,4 @@
-# Linked List & Array
+# 2.2 Linked List & Array
 
 ## 5.1 Linked List
 
