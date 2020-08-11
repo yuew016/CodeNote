@@ -1,4 +1,4 @@
-# 1.2 Breadth First Search
+# 1.3 Breadth First Search
 
 ## 什么时候应该使用BFS?
 

@@ -1,5 +1,54 @@
 # 1.7 Dynamic Programming
 
+通过一道经典题理解动态规划
+
+ • 递归与动规的联系与区别  
+ • 记忆化搜索
+
+## Triangle
+
+解决方法: • DFS: Traverse • DFS: Divide Conquer • Divide Conquer + Memorization • Traditional Dynamic Programming
+
+```python
+#DFS: Traverse 
+#time: O(2^n), n = height
+class Solution:
+    def minimumTotal(self, triangle: List[List[int]]) -> int:
+        self.best = sys.maxsize
+        self.traverse(triangle,0,0,0)
+        return self.best
+    
+    def traverse(self, triangle, x,y,sum):
+        if x == len(triangle):
+            if sum < self.best:
+                self.best = sum
+            return
+        self.traverse(triangle,x+1, y, sum+triangle[x][y])
+        self.traverse(triangle, x+1, y+1, sum+triangle[x][y])
+
+
+#DFS: Divide Conquer
+#time:O(2^n)
+class Solution:
+    def minimumTotal(self, triangle: List[List[int]]) -> int:
+        def divideConquer(x,y):
+            if x == len(triangle):
+                return 0
+            return triangle[x][y] + min(divideConquer(x+1, y), divideConquer(x+1, y+1))
+        
+        return divideConquer(0,0)
+```
+
+• 什么时候使用动态规划  
+ • 适用动态规划的三个条件  
+ • 不适用动态规划的三个条件
+
+• 动规四要素  
+ • vs 递归三要素
+
+• 面试中常见动态规划的分类 • 坐标\(矩阵\)动态规划  
+ • 接龙型动态规划
+
 ## [Decode Ways](https://leetcode.com/problems/decode-ways/)
 
 ```python
