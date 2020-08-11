@@ -301,7 +301,7 @@ class Solution:
 
 ## Heap
 
-* 原理:小视频
+### 原理
 
 完全二叉树
 
@@ -331,6 +331,100 @@ if full, expend length
 * 替代品:TreeMap
 
 支持操作:O\(log N\) Add / O\(log N\) Remove / O\(1\) Min or Max Max Heap vs Min Heap
+
+### [Heapify](https://www.lintcode.com/problem/heapify/description)
+
+Given an integer array, heapify it into a min-heap array.
+
+For a heap array A, A\[0\] is the root of heap, and for each A\[i\], A\[i  _2 + 1\] is the left child of A\[i\] and A\[i_  2 + 2\] is the right child of A\[i\].
+
+```python
+'''
+al: sift down
+time:O(n)
+begin from n//2 to 0, at most n/4 nums sift 1 time, n/8 sift 2 times,
+...1 sift logn times. 
+Thus, n/4+n/8*2+...+1*logn = N
+'''
+class Solution:
+    """
+    @param: A: Given an integer array
+    @return: nothing
+    """
+    def heapify(self, A):
+        # write your code here
+        if not A:
+            return A
+        for i in range(len(A)//2-1, -1, -1):
+            self.siftdown(A,i)
+        return A
+    
+    def siftdown(self, A, i):
+        n = len(A)
+        while i < n:
+            now = i 
+            left = 2*now+1 
+            right = 2*now+2 
+            if left < n and A[left] < A[now]:
+                now = left
+            if right < n and A[right] < A[now]:
+                now = right
+                
+            if now == i:
+                break
+            A[now], A[i] = A[i], A[now]
+            i = now 
+            
+            
+```
+
+递归版本，siftup and siftdown
+
+```python
+class Solution:
+    """
+    @param: A: Given an integer array
+    @return: nothing
+    """
+    def heapify(self, A):
+        # write your code here
+        for i in range(len(A)):
+            self.siftup(A,i)
+        for i in range(len(A)//2-1, -1, -1):
+            self.siftdown(A,i)
+        return A
+        
+    #time:O(nlogn), same as insert
+    def siftup(self, A, i):
+        if i <= 0:
+            return 
+        parent = (i-1)//2
+        if A[parent] <= A[i]:
+            return
+        A[parent], A[i] = A[i], A[parent]
+        self.siftup(A, parent)
+        
+    
+    #time:O(N)
+    def siftdown(self, A, i):
+        n = len(A)
+        if 2*i+1 >= n:
+            return
+        now = i 
+        left = 2*now+1 
+        right = 2*now+2 
+        if left < n and A[left] < A[now]:
+            now = left
+        if right < n and A[right] < A[now]:
+            now = right
+            
+        if now == i:
+            return
+        A[now], A[i] = A[i], A[now]
+        self.siftdown(A,now)
+            
+            
+```
 
 ### \264. Ugly Number II
 
