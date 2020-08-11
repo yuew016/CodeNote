@@ -1,11 +1,13 @@
 # 1.7 Dynamic Programming
 
-通过一道经典题理解动态规划
+## 通过一道经典题理解动态规划
 
- • 递归与动规的联系与区别  
- • 记忆化搜索
+ • 递归与动规的联系与区别: 有没有重复计算  
+ • 记忆化搜索的本质:动态规划 
 
-## Triangle
+动态规划与分治的区别? 重复计算!
+
+### Triangle
 
 解决方法: • DFS: Traverse • DFS: Divide Conquer • Divide Conquer + Memorization • Traditional Dynamic Programming
 
@@ -39,9 +41,80 @@ class Solution:
         return divideConquer(0,0)
 ```
 
-• 什么时候使用动态规划  
- • 适用动态规划的三个条件  
- • 不适用动态规划的三个条件
+dp:
+
+```python
+#dp:记忆化搜索
+#时间复杂度 O(n2) 空间复杂度 O(n2)
+class Solution:
+    def minimumTotal(self, triangle: List[List[int]]) -> int:
+        def divideConquer(x,y,memo):
+            if x == len(triangle):
+                return 0
+            if (x,y) in memo:
+                return memo[(x,y)]
+            memo[(x,y)] = triangle[x][y] + min(divideConquer(x+1, y, memo), divideConquer(x+1, y+1, memo))
+            return memo[(x,y)]
+        
+        return divideConquer(0,0,{})
+```
+
+```python
+#dp:多重循环，自顶向下
+#state: dp[i][j] 代表从 i,j  走到最顶层的最短路径值
+#时间复杂度 O(n2) 空间复杂度 O(n2)
+class Solution:
+    def minimumTotal(self, triangle: List[List[int]]) -> int:
+        n = len(triangle)
+        dp = [[0]*(i+1) for i in range(n)]
+        
+        #initialize: 最顶层，两边
+        dp[0][0] = triangle[0][0]
+        for i in range(1,n):
+            dp[i][0], dp[i][i] = triangle[i][0]+dp[i-1][0], triangle[i][i]+dp[i-1][i-1]
+            
+        #dp[i][j] = triangle[i][j] + min(dp[i-1][j], dp[i-1][j-1])
+        for i in range(1, n):
+            for j in range(1,i):
+                dp[i][j] = triangle[i][j] + min(dp[i-1][j], dp[i-1][j-1])
+        return min(dp[n-1])
+```
+
+## dp两种方法
+
+多重循环 vs 记忆化搜索
+
+多重循环：
+
+优点:正规，大多数面试官可以 接受，存在空间优化可能性。
+
+缺点:思考有难度。
+
+记忆化搜索：
+
+优点:容易从搜索算法直接转化过来。有的时候可以节省更多的时间。
+
+缺点:递归
+
+## 什么时候使用动态规划
+
+• 适用动态规划的三个条件:
+
+满足下面三个条件之一: 极有可能  
+• 求最大值最小值  
+• 判断是否可行  
+• 统计方案个数
+
+• 不适用动态规划的三个条件：  
+1. 求出**所有 具体 的方案**而非方案 **个数** :dfs  
+[http://www.lintcode.com/problem/palindrome-partitioning/ ](http://www.lintcode.com/problem/palindrome-partitioning/%20)  
+2. 输入数据是一个 **集合** 而不是 **序列:** dp不能换位置，必须有方向性  
+[http://www.lintcode.com/problem/longest-consecutive-sequence/](http://www.lintcode.com/problem/longest-consecutive-sequence/)  
+3. 暴力算法的复杂度已经是多项式级别  
+ • 动态规划擅长与优化指数级别复杂度\(2^n,n!\)到多项式级别复杂度\(n^2,n^3\)   
+• 不擅长优化n^3到n^2
+
+• 则 极不可能 使用动态规划求解
 
 • 动规四要素  
  • vs 递归三要素
