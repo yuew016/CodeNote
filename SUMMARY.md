@@ -14,5 +14,6 @@
   * [2.1 Stack](2.-data-structure/stack.md)
   * [2.2 Linked List & Array](2.-data-structure/linked-list-and-array.md)
   * [2.3 Hash & Heap](2.-data-structure/hash-and-heap-and-stack.md)
+  * [string & list](2.-data-structure/string-and-list.md)
 * [3. Math](math.md)
 
