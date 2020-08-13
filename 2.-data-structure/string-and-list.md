@@ -1,4 +1,4 @@
-# string & list
+# 2.4 string & list
 
 ## [Reorder Data in Log Files](https://leetcode.com/problems/reorder-data-in-log-files/)
 

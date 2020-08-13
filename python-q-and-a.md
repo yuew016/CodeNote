@@ -2,7 +2,7 @@
 
 ## 0.1 list, set, dict, tuple
 
-## 0.2 range范围
+## 0.2 range
 
 ```text
 range(stop)
@@ -171,4 +171,8 @@ if __name__ == '__main__':
 
         print(maxSum(arr,n))
 ```
+
+## 0.8 sort\(key=lambda, reverse = True\)
+
+sort\(\)与sorted\(\)的不同在于，sort是在原位重新排列列表，而sorted\(\)是产生一个新的列表。
 

@@ -116,74 +116,11 @@ class Solution:
 
 • 则 极不可能 使用动态规划求解
 
-## 动规四要素
+• 动规四要素  
+ • vs 递归三要素
 
-状态 State  
- • 灵感，创󿲕力，存储小规模问题的结果 •   
-方程 Function   
-• 状态之间的联系，怎么通过小的状态，来算大的状态 •   
-初始化 Initialization   
-• 最极限的小状态是什么, 起点 •   
-答案 Answer   
-• 最大的那个状态是什么，终点
-
-• vs 递归三要素:  
-定义\(状态\)  
- • 接受什么参数  
-• 做了什么事  
-• 返回什么值 
-
-• 拆解\(方程\)  
-• 如何将参数变小 
-
-• 出口\(初始化\)  
-• 什么时候可以直接 return
-
-## 面试中常见动态规划的分类 
-
-**• 坐标\(矩阵\)动态规划  
- • 接龙型动态规划**
-
-坐标型动态规划  
-****• **state**:  
- • f\[x\] 表示我从起点走到坐标x......  
- • f\[x\]\[y\] 表示我从起点走到坐标x,y......  
-****• **function**: 研究走到x,y这个点之前的一步   
-• **initialize**: 起点  
- • **answer**: 终点
-
-初始化一个二维的动态规划时 就去**初始化第0行和第0列**
-
-\*\*\*\*
-
-## Minimum Path Sum
-
-follow up:
-
-
-
-\*\*\*\*
-
-**接龙型动态规划:**  
-
-
-## Longest Increasing Subsequence
-
-## Climbing Stairs
-
-follow up:
-
-跳跃游戏 I && II
-
- [http://www.lintcode.com/en/problem/jump-game/](http://www.lintcode.com/en/problem/jump-game/) [http://www.lintcode.com/en/problem/jump-game-ii/](http://www.lintcode.com/en/problem/jump-game-ii/) 
-
-这个题最优的方法是使用“贪心法”，动态规划复杂度较高
-
-## Unique Paths
-
-4个向下，4个向右 = C\(8,4\)
-
-Follow up:
+• 面试中常见动态规划的分类 • 坐标\(矩阵\)动态规划  
+ • 接龙型动态规划
 
 ## [Decode Ways](https://leetcode.com/problems/decode-ways/)
 
