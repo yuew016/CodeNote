@@ -44,13 +44,13 @@ class Solution:
 dp:
 
 ```python
-#dp:记忆化搜索
+#dp:记忆化搜索 Divide Conquer + Memorization
 #时间复杂度 O(n2) 空间复杂度 O(n2)
 class Solution:
     def minimumTotal(self, triangle: List[List[int]]) -> int:
         def divideConquer(x,y,memo):
-            if x == len(triangle):
-                return 0
+            if x == len(triangle)-1:
+                return triangle[x][y]
             if (x,y) in memo:
                 return memo[(x,y)]
             memo[(x,y)] = triangle[x][y] + min(divideConquer(x+1, y, memo), divideConquer(x+1, y+1, memo))
