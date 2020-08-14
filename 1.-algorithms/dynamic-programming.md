@@ -80,6 +80,69 @@ class Solution:
         return min(dp[n-1])
 ```
 
+dp优化空间：滚动数组 i%2
+
+自底向上的动态规划，多重循环实现 使用滚动数组进行空间优化
+
+时间复杂度 O\(n2\)O\(n2\) 空间复杂度 O\(n\)O\(n\) （额外空间耗费）
+
+```python
+class Solution:
+    """
+    @param triangle: a list of lists of integers
+    @return: An integer, minimum path sum
+    """
+    def minimumTotal(self, triangle):
+        n = len(triangle)
+        
+        # state: dp[i][j] 代表从 0, 0 走到 i, j 的最短路径值
+        dp = [[0] * n, [0] * n]
+        
+        # initialize: 初始化起点
+        dp[0][0] = triangle[0][0]
+        
+        # function: dp[i][j] = min(dp[i - 1][j - 1], dp[i - 1][j]) + triangle[i][j]
+        # i, j 这个位置是从位置 i - 1, j 或者 i - 1, j - 1 走过来的
+        for i in range(1, n):
+            dp[i % 2][0] = dp[(i - 1) % 2][0] + triangle[i][0]
+            dp[i % 2][i] = dp[(i - 1) % 2][i - 1] + triangle[i][i]
+            for j in range(1, i):
+                dp[i % 2][j] = min(dp[(i - 1) % 2][j], dp[(i - 1) % 2][j - 1]) + triangle[i][j]
+               
+        # answer: 最后一层的任意位置都可以是路径的终点
+        return min(dp[(n - 1) % 2])
+```
+
+```python
+class Solution:
+    """
+    @param triangle: a list of lists of integers
+    @return: An integer, minimum path sum
+    """
+    def minimumTotal(self, triangle):
+        # write your code here
+        #自底向上的方式的多重循环动态规划, 滚动数组优化空间
+        #time:n^2 space:n 
+        #1.state: dp[i][j] = min sum bottom to [i][j]
+        n = len(triangle)
+        dp = [[0]*n, [0]*n]
+        
+        #2.initialize: dp[n-1]
+        for i in range(n):
+            dp[(n-1)%2][i] = triangle[n-1][i]
+        
+        #3. func:dp[i%2][j] = min(dp[(i+1)%2][j], dp[(i+1)%2][j+1]) + triangle[i][j]
+        for i in range(n-2, -1, -1):
+            for j in range(i+1):
+                dp[i%2][j] = min(dp[(i+1)%2][j], dp[(i+1)%2][j+1]) + triangle[i][j]
+        #ans: dp[0][0]      
+        return dp[0%2][0]
+ 
+        
+        
+
+```
+
 ## dp两种方法
 
 多重循环 vs 记忆化搜索
