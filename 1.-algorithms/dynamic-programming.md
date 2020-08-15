@@ -209,9 +209,85 @@ class Solution:
 
 ## Minimum Path Sum
 
+```python
+#dp, 优化空间, 唯一数组，覆盖
+#time:O(mn) space:O(n)
+class Solution:
+    def minPathSum(self, grid: List[List[int]]) -> int:
+        if not grid or not grid[0]:
+            return 0
+        n = len(grid[0])
+        #state: dp[x%2][y] = min sum from [0,0] to [x,y]
+        dp = [0]*n
+         
+        #init
+        dp[0] = grid[0][0]
+        for i in range(1, n):
+            dp[i] = dp[i-1] + grid[0][i]
+            
+        #function: dp[y] = min(dp[y], dp[y-1]) + grid[x][y]
+        for x in range(1,len(grid)):
+            dp[0] = dp[0] + grid[x][0]
+            for y in range(1,n):
+                dp[y] = min(dp[y], dp[y-1]) + grid[x][y]
+        
+        #ans:  dp[n-1]
+        return dp[n-1]
+```
 
+```python
+#dp, 滚动数组优化空间
+#time:O(mn) space:O(n)
+class Solution:
+    def minPathSum(self, grid: List[List[int]]) -> int:
+        if not grid or not grid[0]:
+            return 0
+        m,n = len(grid), len(grid[0])
+        #state: dp[x%2][y] = min sum from [0,0] to [x,y]
+        dp = [[0]*n, [0]*n]
+         
+        #init
+        dp[0][0] = grid[0][0]
+        for i in range(1, n):
+            dp[0][i] = dp[0][i-1] + grid[0][i]
+            
+        #function: dp[x][y] = min(dp[(x-1)%2][y], dp[x%2][y-1]) + grid[x][y]
+        for x in range(1,m):
+            dp[x%2][0] = dp[(x-1)%2][0] + grid[x][0]
+            for y in range(1,n):
+                dp[x%2][y] = min(dp[(x-1)%2][y], dp[x%2][y-1]) + grid[x][y]
+        
+        #ans:  dp[(m-1)%2][n-1]
+        return dp[(m-1)%2][n-1]
+```
 
 follow up:
+
+### [Minimum Falling Path Sum](https://leetcode.com/problems/minimum-falling-path-sum/)
+
+```python
+#14:13
+#dp ,rolling list
+#space:O(n), time:O(mn)
+class Solution:
+    def minFallingPathSum(self, A: List[List[int]]) -> int:
+        #state: dp[i%2][j] = the min sum from first row to this pos
+        m, n = len(A), len(A[0])
+        dp = [[0]*n, [0]*n]
+        
+        #init:
+        dp[0] = A[0]
+        
+        #fun:dp[x%2][y] = min(dp[(x-1)%2][y-1], dp[(x-1)%2][y], dp[(x-1)%2][y+1]) + A[x][y]
+        for x in range(1,m):
+            dp[x%2][0] = min(dp[(x-1)%2][0], dp[(x-1)%2][1]) + A[x][0]
+            for y in range(1,n-1):
+                dp[x%2][y] = min(dp[(x-1)%2][y-1], dp[(x-1)%2][y], dp[(x-1)%2][y+1]) + A[x][y]
+            dp[x%2][n-1] = min(dp[(x-1)%2][n-1], dp[(x-1)%2][n-2]) + A[x][n-1]
+            
+        #ans: min(dp[m%2])
+        return min(dp[(m-1)%2])
+```
 
 
 
