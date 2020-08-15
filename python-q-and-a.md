@@ -2,7 +2,7 @@
 
 ## 0.1 list, set, dict, tuple
 
-## 0.2 range范围
+## 0.2 range
 
 ```text
 range(stop)
@@ -171,4 +171,14 @@ if __name__ == '__main__':
 
         print(maxSum(arr,n))
 ```
+
+## 0.8 sort\(key=lambda, reverse = True\)
+
+sort\(\)与sorted\(\)的不同在于，sort是在原位重新排列列表，而sorted\(\)是产生一个新的列表。
+
+## 0.9 heapq.nlargest\(n, key=None\),heapq.nsmallest\(n, key=None\) <a id="articleContentId"></a>
+
+数组中的第K个最大元素
+
+当要查找的元素个数相对比较小的时候，函数 nlargest\(\) 和 nsmallest\(\) 是很合适的。如果你仅仅想查找唯一的最小或最大（N=1）的元素的话，那么使用 min\(\) 和max\(\) 函数会更快些。类似的，如果 N 的大小和集合大小接近的时候，通常先排序这个集合然后再使用切片操作会更快点（sorted\(items\)\[:N\] 或者是 sorted\(items\)\[-N:\]）。需要在正确场合使用函数 nlargest\(\) 和 nsmallest\(\) 才能发挥它们的优势（如果N 快接近集合大小了，那么使用排序操作会更好些）。
 

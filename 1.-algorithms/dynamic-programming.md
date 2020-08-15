@@ -289,7 +289,63 @@ class Solution:
         return min(dp[(m-1)%2])
 ```
 
+### [Minimum Falling Path Sum II](https://leetcode.com/problems/minimum-falling-path-sum-ii/)
 
+```python
+#dp: find two min num in each row, for next row, add min1 if not same col, else, add min2
+#tiem: O(MN), space:O(1) 
+class Solution:
+    def minFallingPathSum(self, A: List[List[int]]) -> int:
+        for i in range(1, len(A)):
+            r = heapq.nsmallest(2, A[i - 1])
+            for j in range(len(A[0])):
+                A[i][j] += r[1] if A[i - 1][j] == r[0] else r[0]
+        return min(A[-1])
+```
+
+similar:
+
+### [Paint House II](https://www.lintcode.com/problem/paint-house-ii/description)
+
+```python
+#dp+滚动数组:dp[i][j] = min price painting to i using j 
+#time: O(nk), space:O(k)
+class Solution:
+    """
+    @param costs: n x k cost matrix
+    @return: an integer, the minimum cost to paint all houses
+    """
+    def minCostII(self, costs):
+        def find_two_min(arr):
+            res = [sys.maxsize, sys.maxsize]
+            for i in arr:
+                if i < res[0]:
+                    res[1] = res[0]
+                    res[0] = i 
+                elif i < res[1]:
+                    res[1] = i 
+            return res
+        # write your code here
+        if not costs or not costs[0]:
+            return 0 
+        #init
+        n, k  = len(costs), len(costs[0])
+        dp = [costs[0], costs[0]]
+        #fun: 
+        '''
+        if dp[(i-1)%2][j] != min1: dp[i%2][j] = min1 + costs[i][j]
+        else: dp[i%2][j] = min2 + costs[i][j]
+        '''
+        for i in range(1, n):
+            min1, min2 = find_two_min(dp[(i-1)%2])
+            for j in range(k):
+                if dp[(i-1)%2][j] != min1: 
+                    dp[i%2][j] = min1 + costs[i][j]
+                else: 
+                    dp[i%2][j] = min2 + costs[i][j]
+        return min(dp[(n-1)%2])
+
+```
 
 ## Climbing Stairs
 
