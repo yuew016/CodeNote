@@ -182,3 +182,7 @@ sort\(\)与sorted\(\)的不同在于，sort是在原位重新排列列表，而s
 
 当要查找的元素个数相对比较小的时候，函数 nlargest\(\) 和 nsmallest\(\) 是很合适的。如果你仅仅想查找唯一的最小或最大（N=1）的元素的话，那么使用 min\(\) 和max\(\) 函数会更快些。类似的，如果 N 的大小和集合大小接近的时候，通常先排序这个集合然后再使用切片操作会更快点（sorted\(items\)\[:N\] 或者是 sorted\(items\)\[-N:\]）。需要在正确场合使用函数 nlargest\(\) 和 nsmallest\(\) 才能发挥它们的优势（如果N 快接近集合大小了，那么使用排序操作会更好些）。
 
+## 0.10 collections.Counter\(\)
+
+[https://blog.csdn.net/candice5566/article/details/107916460](https://blog.csdn.net/candice5566/article/details/107916460)
+

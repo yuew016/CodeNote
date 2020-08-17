@@ -1237,3 +1237,83 @@ class Solution:
         return t
 ```
 
+## [Game of Life](https://leetcode.com/problems/game-of-life/)
+
+```python
+'''
+0,2 are "dead", and "dead->live"
+1,3 are "live", and "live->dead"
+'''
+class Solution:
+    def gameOfLife(self, board: List[List[int]]) -> None:
+        """
+        Do not return anything, modify board in-place instead.
+        """
+        def alive(x, y, r, c):
+            neighbors = [(1,0), (1,-1), (0,-1), (-1,-1), 
+                         (-1,0), (-1,1), (0,1), (1,1)]
+            count = 0
+            for nei in neighbors:
+                i = x + nei[0]
+                j = y + nei[1]
+                if 0<= i < r and 0 <= j < c and board[i][j]%2== 1:
+                    count += 1
+            return count
+    
+        
+        if not board or not board[0]:
+            return
+        r, c = len(board), len(board[0])
+        for x in range(r):
+            for y in range(c):
+                if board[x][y] == 0:
+                    if alive(x,y,r,c) == 3:
+                        board[x][y] = 2
+                else:
+                    count = alive(x, y, r, c)
+                    if count < 2 or count > 3:
+                        board[x][y] = 3
+        for x in range(r):
+            for y in range(c):
+                if board[x][y] == 2:
+                    board[x][y] = 1
+                elif board[x][y] == 3:
+                    board[x][y] = 0
+        
+                
+```
+
+follow up: infinite array  
+just calculate with live points
+
+```python
+import collections
+class Solution:
+    def gameOfLife(self, board: List[List[int]]) -> None:
+        """
+        Do not return anything, modify board in-place instead.
+        """
+        #find all live points
+        live = {(i,j) for i, row in enumerate(board) for j, live in enumerate(row) if live}
+        #print(live)
+        #find all next live points
+        live = self.find_next_live(live)
+        for i in range(len(board)):
+            for j in range(len(board[0])):
+                board[i][j] = int((i,j) in live)
+    
+    def find_next_live(self, live):
+        neighbors = collections.Counter()
+        #each live add 1 to all its neighbors
+        for i,j in live:
+            for I in (i-1, i, i+1):
+                for J in (j-1, j, j+1):
+                    if I != i or J != j:
+                        neighbors[I, J] += 1
+        new_live = set()
+        for ij in neighbors:
+            if neighbors[ij] == 3 or neighbors[ij] == 2 and ij in live:
+                new_live.add(ij)
+        return new_live
+```
+
