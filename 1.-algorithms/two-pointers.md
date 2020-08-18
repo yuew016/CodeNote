@@ -166,6 +166,27 @@ class Solution:
                 i += 1
 ```
 
+## [String Compression](https://leetcode.com/problems/string-compression/)/Compress string in-place
+
+```python
+class Solution:
+    def compress(self, chars: List[str]) -> int:   
+        ans, index = 0, 0
+        while index < len(chars):
+            curchar, count = chars[index], 0
+            while index < len(chars) and chars[index] == curchar:
+                index += 1
+                count += 1
+            chars[ans] = curchar
+            ans += 1
+            if count > 1:
+                for i in str(count):
+                    chars[ans] = i
+                    ans += 1
+        return ans
+            
+```
+
 ## **• 6.2 相向双指针**
 
 ### \125. Valid Palindrome
