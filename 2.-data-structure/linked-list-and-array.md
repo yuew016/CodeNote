@@ -1317,7 +1317,7 @@ class Solution:
         return new_live
 ```
 
-## [Find Pivot Index](https://leetcode.com/problems/find-pivot-index/)
+## [Find Pivot Index](https://leetcode.com/problems/find-pivot-index/)/Balanced Array
 
 ```python
 #prefix sum
