@@ -438,3 +438,50 @@ if __name__ == '__main__':
         print(maxSum(arr,n))
 ```
 
+## [Palindromic Substrings](https://leetcode.com/problems/palindromic-substrings/)
+
+```python
+#start from each index and try to extend palindrome for both odd and even length.
+#time: O(n2)
+class Solution:
+    def countSubstrings(self, s: str) -> int:
+        if not s:
+            return 0
+        self.count = 0
+        for i in range(len(s)):
+            self.check(s, i,i, count)  #check odd length
+            self.check(s, i, i+1, count) #check even length
+        return self.count
+    
+    def check(self, s, i, j, count):
+        while i >= 0 and j < len(s) and s[i] == s[j]:
+                self.count += 1
+                i -= 1
+                j += 1
+            
+            
+            
+ #follow up: skip same chars.
+class Solution:
+    def countSubstrings(self, s: str) -> int:
+        if not s:
+            return 0
+        self.count = 0
+        index = 0
+        while index <len(s):
+            left = index
+            while index <len(s) and s[index] == s[left]:
+                index += 1
+            midL = index - left
+            self.count += (midL*(midL+1)//2)
+            self.check(s, left-1,index, count)  #check even length
+        return self.count
+    
+    def check(self, s, i, j, count):
+        while i >= 0 and j < len(s) and s[i] == s[j]:
+                self.count += 1
+                i -= 1
+                j += 1
+            
+```
+
