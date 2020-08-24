@@ -280,5 +280,39 @@ def radixSort(nums):
     return nums
 ```
 
-## 
+##  [Diagonal Traverse II](https://leetcode.com/problems/diagonal-traverse-ii/)
+
+```python
+#bfs
+#time:O(n), space:(1)
+import collections
+class Solution:
+    def findDiagonalOrder(self, nums: List[List[int]]) -> List[int]:
+        res = []
+        que = deque([(0,0)])
+        while que:
+            i,j = que.popleft()
+            res.append(nums[i][j])
+            if j == 0 and i+1<len(nums):
+                que.append((i+1,j))
+            if j+1<len(nums[i]):
+                que.append((i,j+1))
+        return res
+
+
+
+#hash + deque
+#time:O(n), space:(N)
+import collections
+class Solution:
+    def findDiagonalOrder(self, nums: List[List[int]]) -> List[int]:
+        dic = defaultdict(deque)
+        for i,row in enumerate(nums):
+            for j, ele in enumerate(row):
+                dic[i+j].appendleft(ele)
+        res = []
+        for li in dic.values():
+            res += li
+        return res
+```
 
