@@ -1,4 +1,4 @@
-# 1.2 Depth First Search
+# 1.6 Depth First Search
 
 碰到让你找**所有**方案的题，一定是DFS
 

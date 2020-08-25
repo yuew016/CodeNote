@@ -182,3 +182,29 @@ sort\(\)与sorted\(\)的不同在于，sort是在原位重新排列列表，而s
 
 当要查找的元素个数相对比较小的时候，函数 nlargest\(\) 和 nsmallest\(\) 是很合适的。如果你仅仅想查找唯一的最小或最大（N=1）的元素的话，那么使用 min\(\) 和max\(\) 函数会更快些。类似的，如果 N 的大小和集合大小接近的时候，通常先排序这个集合然后再使用切片操作会更快点（sorted\(items\)\[:N\] 或者是 sorted\(items\)\[-N:\]）。需要在正确场合使用函数 nlargest\(\) 和 nsmallest\(\) 才能发挥它们的优势（如果N 快接近集合大小了，那么使用排序操作会更好些）。
 
+## 0.10 collections.Counter\(\)
+
+{% embed url="https://blog.csdn.net/candice5566/article/details/107916460" %}
+
+## 0.11 substring, subarray, subsequence
+
+substring, subarray: continuous, in order
+
+subsequence: not continuous, in order
+
+## 0.12 map\(\)
+
+```python
+>>>def square(x) :            # 计算平方数
+...     return x ** 2
+... 
+>>> map(square, [1,2,3,4,5])   # 计算列表各个元素的平方
+[1, 4, 9, 16, 25]
+>>> map(lambda x: x ** 2, [1, 2, 3, 4, 5])  # 使用 lambda 匿名函数
+[1, 4, 9, 16, 25]
+ 
+# 提供了两个列表，对相同位置的列表数据进行相加
+>>> map(lambda x, y: x + y, [1, 3, 5, 7, 9], [2, 4, 6, 8, 10])
+[3, 7, 11, 15, 19]
+```
+

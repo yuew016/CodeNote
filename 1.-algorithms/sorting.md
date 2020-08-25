@@ -316,3 +316,81 @@ class Solution:
         return res
 ```
 
+## [Sort Characters By Frequency](https://leetcode.com/problems/sort-characters-by-frequency/)
+
+```python
+#hashtable O(n)
+#1.hash(key=char, value = count)
+#2.hash(key = count, value = str_of_this_count)
+#3.connect in order
+import collections
+class Solution:
+    def frequencySort(self, s: str) -> str:
+        s1,s2 = Counter(s), {}
+        for i,j in s1.items():
+            s2.setdefault(j,[]).append(i*j)
+        return "".join(["".join(s2[i]) for i in range(len(s),0,-1) if i in s2])
+ 
+```
+
+## Sort the Matrix Diagonally
+
+[https://leetcode.com/problems/sort-the-matrix-diagonally/](https://leetcode.com/problems/sort-the-matrix-diagonally/)
+
+```python
+#hashtable 对角线编号（i-j):sorted[nums]
+#O(n), O(n)
+class Solution:
+    def diagonalSort(self, A: List[List[int]]) -> List[List[int]]:
+        n, m = len(A), len(A[0])
+        d = collections.defaultdict(list)
+        for i in range(n):
+            for j in range(m):
+                d[i - j].append(A[i][j])
+        for k in d:
+            d[k].sort(reverse=1)
+        for i in range(n):
+            for j in range(m):
+                A[i][j] = d[i - j].pop()
+        return A
+```
+
+## Sort matrix
+
+![](../.gitbook/assets/jie-ping-20200825-01.29.29.png)
+
+```python
+import collections
+def solution(m):
+    if not m:
+        return m
+    #sort m into li
+    li,dic,k = [],{},len(m)
+    for r in m:
+        li += r
+    li = collections.Counter(li)
+    for i, num in li.items():
+        dic.setdefault(num,[]).extend([i]*num)
+    li = []
+    for i in range(1,k**2+1):
+        if i in dic:
+            li.extend(sorted(dic[i]))
+    print(li)
+    #bfs
+    que = collections.deque([(0,0)])
+    while que:
+        i,j = que.popleft()
+        m[i][j] = li.pop()
+        if j+1<k:
+            que.append((i, j+1))
+        if j == 0 and i+1<k:
+            que.append((i+1,j))
+    print(m)
+
+    
+
+if __name__ == "__main__":
+    m = [[1,1,2],[2,2,3],[4,4,0]]
+    solution(m)
+```
+

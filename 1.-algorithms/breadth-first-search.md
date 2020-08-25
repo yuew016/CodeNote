@@ -1,4 +1,4 @@
-# 1.3 Breadth First Search
+# 1.2 Breadth First Search
 
 ## 什么时候应该使用BFS?
 
@@ -627,6 +627,29 @@ class Solution:
                 result.append(next)
                 self.dfs(dict,distance,paths,next ,end,result)
                 result.pop()
+```
+
+## [Battleships in a Board](https://leetcode.com/problems/battleships-in-a-board/)
+
+```python
+class Solution(object):
+    def countBattleships(self, board):
+        """
+        :type board: List[List[str]]
+        :rtype: int
+        """
+        if not board or not board[0]:
+            return 0
+        count = 0
+        for i in range(len(board)):
+            for j in range(len(board[0])):
+                if board[i][j] == 'X':
+                    if i > 0 and board[i-1][j] == 'X':
+                        continue
+                    if j>0 and board[i][j-1] == 'X':
+                        continue
+                    count += 1
+        return count
 ```
 
 ### 总结 Conclusion

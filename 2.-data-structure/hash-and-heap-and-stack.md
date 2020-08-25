@@ -299,6 +299,23 @@ class Solution:
         return ans
 ```
 
+### [K-diff Pairs in an Array](https://leetcode.com/problems/k-diff-pairs-in-an-array/)/Counting pairs
+
+```python
+import collections
+class Solution:
+    def findPairs(self, nums: List[int], k: int) -> int:
+        if not nums or len(nums)<2:
+            return 0
+        ans = 0
+        dic = collections.Counter(nums)
+        for item in dic:
+             if k > 0 and item + k in dic or k == 0 and dic[item] > 1:
+                    ans += 1
+        return ans
+                
+```
+
 ## Heap
 
 ### 原理
