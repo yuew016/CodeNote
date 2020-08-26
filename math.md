@@ -236,3 +236,33 @@ print(format(1.23456, '.4f'))
 
 `round`函数自动四舍五入；自动去掉多余的0
 
+## power of two
+
+```python
+class Solution:
+    def isPowerOfTwo(self, n: int) -> bool:
+        if n<= 0:
+            return False
+        return not (n&(n-1))
+```
+
+## [Smallest power of 2 greater than or equal to n](https://www.geeksforgeeks.org/smallest-power-of-2-greater-than-or-equal-to-n/)
+
+```python
+def nextPowerOf2(n): 
+  
+    p = 1
+    if (n and not(n & (n - 1))): 
+        return n 
+  
+    while (p < n) : 
+        p <<= 1
+          
+    return p; 
+  
+  
+# Driver Code 
+n = 5
+print(nextPowerOf2(n)); 
+```
+
