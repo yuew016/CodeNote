@@ -2,6 +2,20 @@
 
 ## Matrix
 
+小陷阱：初始化矩阵不能写成：
+
+```python
+before = [[0]*cols]*rows
+```
+
+而必须是：
+
+```python
+before = [[0]*cols for i in range(rows)]
+or
+before = [[0 for _ in range(cols)] for i in range(rows)]
+```
+
 ### **A common method to rotate the image**
 
 ### **48.** Rotate Image

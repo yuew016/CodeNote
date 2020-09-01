@@ -394,3 +394,52 @@ if __name__ == "__main__":
     solution(m)
 ```
 
+## Throttling Gateway
+
+{% embed url="https://leetcode.com/discuss/interview-question/728898/citadel-swe-intern-oa-summer-2021" %}
+
+any given second cannot exceed 3   
+any given 10 second period cannot exceed 20   
+any given minute cannot exceed 60Throttling Gateway
+
+```python
+#hashmap, prefix sum
+import collections
+def droppedRequests(requestTime):
+    if not requestTime:
+        return 0
+    r_num_map = collections.Counter(requestTime)
+    r_num = [(0,0)]+sorted([x for x in r_num_map.items()])
+    start_10,start_60 = 0,0 
+    ans = 0
+    for i in range(1,len(r_num)):
+        drop = 0
+        time, cnt = r_num[i]
+        r_num[i] = (time, r_num[i-1][1]+cnt)
+        if cnt>3:
+            drop = max(cnt-3, drop)
+        while time - r_num[start_10][0] > 10:
+            start_10 += 1
+        if r_num[i][1] - r_num[start_10][1] > 20:
+            exceed =  min(cnt, r_num[i][1] - r_num[start_10][1]-20)
+            drop = max(drop, exceed)
+        while time - r_num[start_60][0] > 60:
+            start_60 += 1
+        if r_num[i][1] - r_num[start_60][1] > 60:
+            exceed =  min(cnt, r_num[i][1] - r_num[start_10][1]-60)
+            drop = max(drop, exceed)
+        print(drop)
+        ans += drop
+    return ans
+
+r = [1, 1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5, 5, 6, 6, 6, 7, 7, 7, 7, 11, 11, 11, 11]
+print(droppedRequests(r))
+
+
+
+
+
+```
+
+## droppedRequests
+
