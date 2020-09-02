@@ -48,3 +48,20 @@ if __name__ == '__main__':
 
 ```
 
+## 14 Longest Common Prefix
+
+```python
+#14:47
+#scan the list and use point to record the max index matches with the previes one
+class Solution:
+    def longestCommonPrefix(self, m: List[str]) -> str:
+        if not m: return ''
+				#since list of string will be sorted and retrieved min max by alphebetic order
+        m.sort()
+        s1, s2 = m[0], m[-1]
+        for i, c in enumerate(s1):
+            if c != s2[i]:
+                return s1[:i] #stop until hit the split index
+        return s1
+```
+

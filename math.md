@@ -280,3 +280,27 @@ n = 5
 print(nextPowerOf2(n)); 
 ```
 
+## 415 Add Strings\(模拟加法运算）
+
+```python
+#18:26
+#straight math method
+class Solution:
+    def addStrings(self, num1: str, num2: str) -> str:
+        ans = []
+        num1,num2 = list(num1),list(num2)
+        carry = 0
+        while len(num1)>0 or len(num2)>0:
+            d1 = ord(num1.pop()) - ord('0') if len(num1)>0 else 0
+            d2 = ord(num2.pop()) - ord('0') if len(num2)>0 else 0
+            temp = d1+d2+carry
+            carry = (temp)//10
+            ans.append(temp%10)
+        if carry:
+            ans.append(carry)
+        return "".join([str(i) for i in ans[::-1]])
+
+            
+            
+```
+
