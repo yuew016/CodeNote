@@ -48,7 +48,7 @@ if __name__ == '__main__':
 
 ```
 
-## 14 Longest Common Prefix
+## 14. Longest Common Prefix
 
 ```python
 #14:47
@@ -63,5 +63,56 @@ class Solution:
             if c != s2[i]:
                 return s1[:i] #stop until hit the split index
         return s1
+```
+
+## 819. Most Common Word
+
+```python
+'''
+c.isalnum(),isalpha(), isaldigit()
+'''
+import collections
+class Solution:
+    def mostCommonWord(self, paragraph: str, banned: List[str]) -> str:
+        #remove ,.;!, keep alnum()
+        p = "".join([c.lower() if c.isalpha() else " " for c in paragraph])
+        p = p.split()
+      #  print(p)
+        p_dict = defaultdict(int)
+        banned = set(banned)
+        for w in p:
+            if w not in banned:
+                p_dict[w] += 1
+      #  print(p_dict.items())
+        return max(p_dict.items(), key = lambda x: x[1])[0]
+        
+            
+        
+        
+        
+```
+
+## 3[8. Count and Say](https://leetcode.com/problems/count-and-say)
+
+```python
+'''
+22:39
+run n loops using two points to count.
+time:O(nm), space:O(1)
+'''
+class Solution:
+    def countAndSay(self, n: int) -> str:
+        result = '1'
+        for _ in range(n-1):
+            prev = result
+            result = ''
+            l,r = 0,0
+            while r<len(prev):
+                while r<len(prev) and prev[l] == prev[r]:
+                    r += 1
+                result += str(r-l) + prev[l]
+                l = r   
+        return result
+
 ```
 
