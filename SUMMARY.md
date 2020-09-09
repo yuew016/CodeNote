@@ -18,4 +18,6 @@
 * [3. Math](math.md)
 * [4. Interview](4.-interview/README.md)
   * [Citadel](4.-interview/citadel.md)
+* [5. Design Pattern](5.-design-pattern/README.md)
+  * [Singleton Pattern](5.-design-pattern/singleton-pattern.md)
 
