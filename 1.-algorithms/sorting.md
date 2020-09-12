@@ -6,9 +6,13 @@
 
 稳定\*\*：如果a原本在b前面，而a=b，排序之后a仍然在b的前面。
 
+![](../.gitbook/assets/jie-ping-20200912-15.57.00.png)
+
 ### coding
 
 ### \#Bubble Sort
+
+性质：1、时间复杂度：O\(n2\) 2、空间复杂度：O\(1\) 3、稳定排序 4、原地排序
 
 ```python
 def sortIntegers(self, A):
@@ -19,7 +23,16 @@ def sortIntegers(self, A):
                 A[j], A[j + 1] = A[j + 1], A[j]
 ```
 
+**优化一下冒泡排序的算法**
+
+改进思路1：设置标志位，明显如果有一趟没有发生交换（flag = false\)，说明排序已经完成  
+改进思路2：记录一轮下来标记的最后位置，下次从头部遍历到这个位置就Ok
+
+
+
 ### \#Selection Sort
+
+性质：1、时间复杂度：O\(n2\) 2、空间复杂度：O\(1\) 3、非稳定排序 4、原地排序
 
 ```python
 def sortIntegers(self, A):
@@ -35,6 +48,8 @@ def sortIntegers(self, A):
 
 ### \#Insertion Sort
 
+性质：1、时间复杂度：O\(n2\) 2、空间复杂度：O\(1\) 3、稳定排序 4、原地排序
+
 ```python
 def sortIntegers(self, A):
         # write your code here
@@ -49,6 +64,8 @@ def sortIntegers(self, A):
 ```
 
 ### \#Shell Sort
+
+性质：1、时间复杂度：O\(n^1.5\) 2、空间复杂度：O\(1\) 3、非稳定排序 4、原地排序
 
 ```python
 def sortIntegers(self, A):
@@ -68,6 +85,8 @@ def sortIntegers(self, A):
 ```
 
 ### \#Merge Sort
+
+1、时间复杂度：O\(nlogn\) 2、空间复杂度：O\(n\) 3、稳定排序 4、非原地排序
 
 ```python
 def sortIntegers(self,A):
@@ -137,9 +156,39 @@ class Solution:
 
         for i in range(start, end+1):
             A[i] = tmp[i]
+            
+            
+/ 非递归式的归并排序
+ 3    public static int[] mergeSort(int[] arr) {
+ 4        int n = arr.length;
+ 5        // 子数组的大小分别为1，2，4，8...
+ 6        // 刚开始合并的数组大小是1，接着是2，接着4....
+ 7        for (int i = 1; i < n; i += i) {
+ 8            //进行数组进行划分
+ 9            int left = 0;
+10            int mid = left + i - 1;
+11            int right = mid + i;
+12            //进行合并，对数组大小为 i 的数组进行两两合并
+13            while (right < n) {
+14                // 合并函数和递归式的合并函数一样
+15                merge(arr, left, mid, right);
+16                left = right + 1;
+17                mid = left + i - 1;
+18                right = mid + i;
+19            }
+20            // 还有一些被遗漏的数组没合并，千万别忘了
+21            // 因为不可能每个字数组的大小都刚好为 i
+22            if (left < n && mid < n) {
+23                merge(arr, left, mid, n - 1);
+24            }
+25        }
+26        return arr;
+27    }
 ```
 
 ### \#quick sort
+
+性质：1、时间复杂度：O\(nlogn\) 2、空间复杂度：O\(1\) 3、非稳定排序 4、原地排序
 
 ```python
 def sortIntegers2(self, A):
@@ -173,6 +222,8 @@ def sortIntegers2(self, A):
 ```
 
 ### \#Heap Sort
+
+性质：1、时间复杂度：O\(nlogn\) 2、空间复杂度：O\(1\) 3、非稳定排序 4、原地排序
 
 ```python
 def sortIntegers2(self, A):
@@ -212,6 +263,10 @@ def sortIntegers2(self, A):
 
 只能排自然数
 
+性质：1、时间复杂度：O\(k\) 2、空间复杂度：O\(k\) 3、稳定排序 4、非原地排序
+
+k=桶大小
+
 ```python
 def countingSort(nums):
     bucket = [0] * (max(nums) + 1) # 桶的个数
@@ -224,9 +279,20 @@ def countingSort(nums):
             bucket[j] -= 1
             i += 1
     return nums
+    
 ```
 
+**优化一下：** 创建的临时数组大小 \(max - min + 1\)就可以了，然后在把 min作为偏移量。
+
 ### \#Bucket Sort
+
+桶排序就是把最大值和最小值之间的数进行瓜分，例如分成  10 个区间，10个区间对应10个桶，我们把各元素放到对应区间的桶中去，再对每个桶中的数进行排序，可以采用归并排序，也可以采用快速排序之类的。
+
+之后每个桶里面的数据就是有序的了，我们在进行合并汇总。
+
+性质：1、时间复杂度：O\(n+k\)  2、空间复杂度：O\(k\)  3、稳定排序  4、非原地排序
+
+注：k 表示桶的个数，下同
 
 ```python
 def bucketSort(nums, defaultBucketSize = 5):
@@ -249,16 +315,13 @@ def bucketSort(nums, defaultBucketSize = 5):
 
 ### \#Radix Sort
 
-基数排序须知：
+基数排序的排序思路是这样的：先以个位数的大小来对数据进行排序，接着以十位数的大小来多数进行排序，接着以百位数的大小……
 
-基数排序是桶排序的一种推广，它所考虑的待排记录包含不止一个关键字。例如对一副牌的整理，可将每张牌看作一个记录，包含两个关键字：花色、面值。一般我们可以将一个有序列是先按花色划分为四大块，每一块中又再按面值大小排序。这时“花色”就是一张牌的“最主位关键字”，而“面值”是“最次位关键字”。
+排到最后，就是一组有序的元素了。不过，他在以某位数进行排序的时候，是用“桶”来排序的。
 
-基数排序有两种方法：
+由于某位数（个位/十位….，不是一整个数）的大小范围为0-9，所以我们需要10个桶，然后把具有相同数值的数放进同一个桶里，之后再把桶里的数按照0号桶到9号桶的顺序取出来，这样一趟下来，按照某位数的排序就完成了
 
-1. MSD （主位优先法）：从高位开始进行排序
-2. LSD （次位优先法）：从低位开始进行排序
-
-作者：牛奶芝麻 链接：[https://www.jianshu.com/p/bbbab7fa77a2](https://www.jianshu.com/p/bbbab7fa77a2) 来源：简书 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+1、时间复杂度：O\(kn\) 2、空间复杂度：O\(n+k\) 3、稳定排序 4、非原地排序
 
 ```python
   # LSD Radix Sort
