@@ -10,7 +10,7 @@ iterative
 
 ## 2.1 时间复杂度训练 II
 
-二叉树的时间复杂度一般都为O\(n\)：节点个数\*每个节点处理时间
+二叉树的时间复杂度一般都为**O\(n\)**：节点个数\*每个节点处理时间
 
 通过O\(n\)的时间，把规模为n的问题变为n/2?: O\(n\)
 
@@ -514,7 +514,12 @@ class TreeNode:
         this.left, this.right = None, None
 """
 
-
+class Node:
+    def __init__(self, val):
+        self.val = val
+        self.left = None
+        self.right = None 
+        
 class Solution:
     """
     @param: root: The root of the binary tree.
