@@ -1,5 +1,54 @@
 # 1.1 Two Pointers
 
+## 6.0 sliding windows
+
+### 438. Find All Anagrams in a String
+
+```python
+#12:42
+#sliding window, two hash
+class Solution:
+    def findAnagrams(self, s: str, p: str) -> List[int]:
+        if not s:
+            return []
+        ans = []
+        #get dict
+        p_dict, window = {}, {}
+        for c in p:
+            p_dict[c] = p_dict.get(c, 0) + 1
+       # print(p_dict)
+        #start sliding 
+        l, r, valid = 0, 0, 0
+        while r<len(s):
+            #c是将移入窗口的字符
+            c = s[r]
+            r += 1
+            #update data in windows
+            if c in p_dict:
+                window[c] = window.get(c, 0) + 1
+                if window[c] == p_dict[c]:
+                    valid += 1
+           # print(window,l,r)
+        
+         #check if the window should shrink
+            if r-l == len(p):
+                if valid == len(p_dict):
+                    ans.append(l)
+                d = s[l]
+                l += 1
+                if d in p_dict:
+                    if window[d] == p_dict[d]:
+                        valid -= 1
+                    window[d] -= 1
+        return ans
+               
+            
+            
+                
+            
+    
+```
+
 ## •6.1 同向双指针
 
 ### \283. Move Zeroes
