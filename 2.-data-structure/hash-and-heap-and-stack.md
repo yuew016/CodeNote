@@ -480,6 +480,33 @@ class Solution:
             
 ```
 
+### Kth Smallest Element in a Sorted Matrix
+
+```python
+'''
+min heap
+hash_seen = {}
+for i in range(k):
+ cur,x,y = heap.pop()
+ check if neighbors not in hash_see:
+    heap.push(neighbors)
+ 
+'''
+import heapq
+class Solution:
+    def kthSmallest(self, matrix: List[List[int]], k: int) -> int:
+        heap = []
+        for i in range(len(matrix)):
+            heapq.heappush(heap, (matrix[i][0],i,0))
+        for _ in range(k):
+            cur,x,y = heapq.heappop(heap)
+            nx = x
+            ny = y+1
+            if ny < len(matrix[0]):
+                heapq.heappush(heap,(matrix[nx][ny], nx, ny))
+        return cur
+```
+
 ### \264. Ugly Number II
 
 ```python
