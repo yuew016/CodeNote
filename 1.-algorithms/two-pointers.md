@@ -1,6 +1,215 @@
 # 1.1 Two Pointers
 
-## 6.0 sliding windows
+## 6.1 同向双指针
+
+### • 快慢类
+
+### Linked List Cycle I, II
+
+### 窗口类
+
+### 6.1.1 窗口类sliding windows
+
+![](../.gitbook/assets/screen-shot-2020-10-27-at-10.33.49.png)
+
+### 
+
+###   minimum-size-subarray-sum
+
+```python
+class Solution:
+    def minSubArrayLen(self, s: int, nums: List[int]) -> int:
+        l = 0
+        ans = len(nums)+ 1
+        total = s
+        for r in range(len(nums)):
+            total -= nums[r]
+            while total <= 0 and l <= r:
+                ans = min(ans, r-l+1)
+              #  print(nums[l:r+1])
+                total += nums[l]
+                l += 1
+        if ans == len(nums)+ 1:
+            return 0
+        return ans
+```
+
+###   Minimum Window Substring
+
+```python
+'''
+sliding window  
+'''
+from collections import Counter
+class Solution:
+    def minWindow(self, s: str, t: str) -> str:
+        tCounter = Counter(t)
+        wCounter = {}
+        need = len(tCounter)
+        right = 0
+        minLength = len(s) + 1
+        minString = ''
+        
+        for left in range(len(s)):
+            while right < len(s) and need > 0:
+                if s[right] in t:
+                    wCounter[s[right]] = wCounter.get(s[right], 0) + 1
+                    if wCounter[s[right]] == tCounter[s[right]]:
+                        need -= 1
+                right += 1
+        #    print(left, right, tCounter, wCounter, need)
+            if right - left < minLength and need == 0:
+                minLength = right - left
+                minString = s[left:right]
+            if s[left] in t:
+                if wCounter[s[left]] == tCounter[s[left]]:
+                    need += 1
+                wCounter[s[left]] -= 1
+           # print(minString, left, right, wCounter, tCounter, need)
+        return minString
+                
+            
+        
+        
+```
+
+### Longest Substring with At Most K Distinct Characters
+
+```python
+'''
+sliding window: l,r = 0,0
+max_length = k
+shash = {}
+for l:
+    while len(shash)< k:
+        add postion r to shash
+        count += 1
+    ans = max(ans, count)
+    shash[s[l]] -= 1
+    if == 0:
+        count -= 1
+    
+
+'''
+class Solution:
+    def lengthOfLongestSubstringKDistinct(self, s: str, k: int) -> int:
+        head = 0
+        ans = 0
+        sHash = {}
+        count = 0
+        for tail in range(len(s)):
+            sHash[s[tail]] = sHash.get(s[tail], 0) + 1
+            while head <= tail and len(sHash) > k:
+                count -= 1
+                sHash[s[head]] -= 1
+                if sHash[s[head]] == 0:
+                    del sHash[s[head]]
+                head += 1
+            ans = max(ans, tail - head + 1) 
+        return ans
+
+
+class Solution:
+    def lengthOfLongestSubstringKDistinct(self, s: str, k: int) -> int:
+        head = 0
+        ans = 0
+        frequency = [0]*256
+        count = 0
+        for tail, char in enumerate(s):
+            frequency[ord(char)] += 1
+            if  frequency[ord(char)] == 1:
+                count += 1
+            while head <= tail and count > k:
+                frequency[ord(s[head])] -= 1
+                if frequency[ord(s[head])] == 0:
+                    count -= 1
+                head += 1
+            ans = max(ans, tail - head + 1) 
+        return ans
+        
+        
+```
+
+### 3. Longest Substring Without Repeating Characters
+
+```python
+#sliding window
+'''
+l, r pointers
+if s[r] not in set_window:
+    r += 1
+else:
+    l += 1
+time: O(n)
+space:O(1)
+'''
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        ans = 0
+        r = 0
+        for l in range(len(s)):
+            while r < len(s) and s[r] not in s[l:r]:
+                r += 1
+            ans = max(ans, r-l)
+        return ans
+
+
+#sliding window
+'''
+l, r pointers
+if s[r] not in set_window:
+    r += 1
+else:
+    l += 1
+time: O(n)
+space:O(256)
+'''
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        ans = 0
+        r = 0
+        cmap = [0]*256
+        for l in range(len(s)):
+            while r < len(s) and cmap[ord(s[r])] == 0:
+                cmap[ord(s[r])] = 1
+                r += 1
+            ans = max(ans, r-l)
+            cmap[ord(s[l])] = 0
+           # print(l,r,ans,cmap)
+        return ans
+
+#sliding window
+'''
+l, r pointers
+seen{key = char, value = last index}
+if s[r] not in seen:
+    r += 1
+else:
+    if l > seen[cur_char]:
+        ans = max(ans, l-r+1)
+    else:
+        l = seen[cur_char]+1
+update seen[cur_char]
+time: O(n)
+space:O(n)
+'''
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        ans = 0
+        l = 0
+        seen = {}
+        for r in range(len(s)):
+            if s[r] not in seen:
+                ans = max(ans, r-l+1)
+            else:
+                if seen[s[r]] < l:
+                    ans = max(ans, r-l+1)
+                else:
+                    l = seen[s[r]] + 1
+            seen[s[r]] = r
+     
+        return ans
+```
 
 ### 438. Find All Anagrams in a String
 
@@ -49,7 +258,7 @@ class Solution:
     
 ```
 
-## •6.1 同向双指针
+## 
 
 ### \283. Move Zeroes
 

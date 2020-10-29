@@ -316,6 +316,43 @@ class Solution:
                 
 ```
 
+### 49 Group Anagrams
+
+tuple as value of dictionary 
+
+```python
+#1. build dictionary of letters-count
+#time: O(kN) space:O(kN)
+'''
+Time Complexity: O(NK)O(NK), where NN is the length of strs, and KK is the maximum length of a string in strs. Counting each string is linear in the size of the string, and we count every string.
+
+Space Complexity: O(NK)O(NK), the total information content stored in ans.
+'''
+from collections import defaultdict
+class Solution:
+    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+        dicts = defaultdict(list)
+        res = []
+        for word in strs:
+            letters = [0]*26
+            for c in word:
+                letters[ord(c)-ord('a')] += 1
+            dicts[tuple(letters)].append(word)
+        return list(dicts.values())
+        
+#2. build dictionary of sorted word
+#time: O(Nklogk) space:O(kN)
+from collections import defaultdict
+class Solution:
+    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+        dicts = defaultdict(list)
+        res = []
+        for word in strs:
+            key = tuple(sorted(word))
+            dicts[key].append(word)
+        return list(dicts.values())
+```
+
 ##  Heap
 
 ### 原理
