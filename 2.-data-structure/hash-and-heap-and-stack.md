@@ -94,6 +94,39 @@ class Solution:
 
 ### • 应用
 
+### Longest Word in Dictionary（Trie, prefix tree\)
+
+```python
+'''
+method 1:
+sort + hash set
+time = O(nlogn+n) // n = number of words
+'''
+class Solution:
+    def longestWord(self, words: List[str]) -> str:
+        words.sort(key = lambda x: len(x))
+        # print(words)
+        seen = set()
+        ans = ""
+        Longest = 0
+        for word in words:
+            if len(word) == 1:
+                seen.add(word)
+                if len(word) > Longest:
+                        Longest = len(word)
+                        ans = word
+                
+            elif word[0:len(word)-1] in seen:
+                    seen.add(word)
+                    if len(word) > Longest:
+                        Longest = len(word)
+                        ans = word
+                    elif len(word) == Longest and word < ans:
+                        Longest = len(word)
+                        ans = word
+        return ans
+```
+
 ### ⭐️LRU Cache
 
 ```python
