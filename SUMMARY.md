@@ -15,7 +15,7 @@
   * [2.2 Linked List & Array](2.-data-structure/linked-list-and-array.md)
   * [2.3 Hash & Heap](2.-data-structure/hash-and-heap-and-stack.md)
   * [2.4 string & list](2.-data-structure/string-and-list.md)
-  * [2.5  Union Find](2.-data-structure/2.5-union-find.md)
+  * [2.5  Union Find/ Trie Tree](2.-data-structure/2.5-union-find.md)
 * [3. Math](math.md)
 * [4. Interview](4.-interview/README.md)
   * [Citadel](4.-interview/citadel.md)

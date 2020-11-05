@@ -1073,5 +1073,74 @@ class Solution:
             
 ```
 
-## 
+## new:
+
+### Trapping Rain Water
+
+```python
+class Solution:
+    def trap(self, height: List[int]) -> int:
+        if not height:
+            return 0
+        l,r = 0, len(height)-1
+        thred = min(height[l], height[r])
+        res = 0
+        while l<r:
+            if height[l]<height[r]:
+                while l<r and height[l]<=thred:
+                    diff = thred - height[l]
+                    res += diff
+                    l += 1
+                thred = min(height[l], height[r])
+            else:
+                while l<r and height[r]<=thred:
+                    diff = thred - height[r]
+                    res += diff
+                    r -= 1
+                thred = min(height[l], height[r])
+        return res
+            
+            
+                
+```
+
+### Trapping Rain Water II
+
+```python
+'''
+time: O(m+n+mnlog(n+m))
+space:O(mn)
+'''
+import heapq
+class Solution:
+    def trapRainWater(self, heightMap: List[List[int]]) -> int:
+        if not heightMap or not heightMap[0]:
+            return 0
+        minheap = []
+        m,n = len(heightMap), len(heightMap[0])
+        visited = [[0]*n for i in range(m)]
+        #push the 4 surrounding to heap (value, x, y)
+        for i in [0, m-1]:
+            for j in range(n):
+                heapq.heappush(minheap, (heightMap[i][j], i, j))
+                visited[i][j] = 1
+        for i in range(1,m-1):
+            for j in [0, n-1]:
+                heapq.heappush(minheap, (heightMap[i][j], i, j)) 
+                visited[i][j] = 1
+        # print(minheap)
+        #pop the minheap, check 4 nei, if not visited, count and push
+        result = 0
+        dx = [1,-1,0,0]
+        dy = [0,0,1,-1]
+        while minheap:
+            cur_value, i, j = heapq.heappop(minheap)
+            for nx, ny in ((i+1, j), (i-1, j), (i, j+1), (i, j-1)):
+                if 0<=nx<m and 0<=ny<n and not visited[nx][ny]:
+                    result += max(0, cur_value-heightMap[nx][ny])
+                    heapq.heappush(minheap, (max(heightMap[nx][ny], cur_value), nx,ny))
+                    visited[nx][ny] = 1
+                    # print(cur_value, x,y,nx,ny, result)
+        return result
+```
 
