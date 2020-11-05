@@ -1144,3 +1144,41 @@ class Solution:
         return result
 ```
 
+Find Median from Data Stream
+
+```python
+'''
+time: addnum: O(logn); find:O(1)
+space: O(n)
+'''
+import heapq
+class MedianFinder:
+
+    def __init__(self):
+        """
+        initialize your data structure here.
+        """
+        #right >= #left
+        self.left_max, self.right_min = [], []
+
+    def addNum(self, num: int) -> None:
+        if len(self.left_max) == len(self.right_min):
+            left = -heapq.heappushpop(self.left_max, -num)
+            heapq.heappush(self.right_min, left)
+        else:
+            right = heapq.heappushpop(self.right_min, num)
+            heapq.heappush(self.left_max, -right)
+
+    def findMedian(self) -> float:
+        if len(self.left_max) == len(self.right_min):
+            return (self.right_min[0] - self.left_max[0]) / 2.0
+        else:
+            return self.right_min[0]
+
+
+# Your MedianFinder object will be instantiated and called as such:
+# obj = MedianFinder()
+# obj.addNum(num)
+# param_2 = obj.findMedian()
+```
+
