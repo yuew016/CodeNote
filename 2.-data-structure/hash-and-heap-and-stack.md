@@ -1144,7 +1144,7 @@ class Solution:
         return result
 ```
 
-Find Median from Data Stream
+### Find Median from Data Stream
 
 ```python
 '''
@@ -1180,5 +1180,66 @@ class MedianFinder:
 # obj = MedianFinder()
 # obj.addNum(num)
 # param_2 = obj.findMedian()
+```
+
+### Sliding Window Median
+
+```python
+'''
+min+max heap
+for each sliding window:
+ get_med(win)
+ remove(left)
+ add(right)
+
+time: O(nlogn)
+space:O(n)
+'''
+class Solution:
+    def medianSlidingWindow(self, nums: List[int], k: int) -> List[float]:
+        if not nums or k <= 1:
+            return nums
+        self.left_max, self.right_min = [],[]
+        res = []
+        #initialize two heaps
+        def addNum(num):
+            if len(self.left_max) >= len(self.right_min):
+                left = -heapq.heappushpop(self.left_max, -num)
+                heapq.heappush(self.right_min, left)
+            else:
+                right = heapq.heappushpop(self.right_min, num)
+                heapq.heappush(self.left_max, -right)
+                
+        def remove(num):
+            if num <= -self.left_max[0]:
+                self.left_max.remove(-num)
+                heapq.heapify(self.left_max)
+            else:
+                self.right_min.remove(num)
+                heapq.heapify(self.right_min)
+
+        def getMed():
+            if len(self.left_max) == len(self.right_min):
+                return (self.right_min[0] - self.left_max[0]) / 2.0
+            else:
+                return self.right_min[0]*1.0
+
+        
+        for i, num in enumerate(nums[:k]):
+            addNum(num)
+        for r in range(k, len(nums)):
+            l = r - k
+            mid = getMed()
+            res.append(mid)
+            # print(self.left_max, self.right_min, res)
+            remove(nums[l])
+            # print(self.left_max, self.right_min, res)
+            addNum(nums[r])
+            # print(self.left_max, self.right_min, res)
+            
+        res.append(getMed())
+        return res
+    
+   
 ```
 

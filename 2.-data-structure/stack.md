@@ -2,6 +2,12 @@
 
 ## Stack
 
+利用栈暂且保存有效信息 
+
+翻转栈的运用
+
+栈优化dfs，变成非递归
+
 ### [394 Decode String](https://leetcode.com/problems/decode-string/)
 
 ```python
