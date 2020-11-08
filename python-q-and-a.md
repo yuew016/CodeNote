@@ -1,7 +1,5 @@
 # 0. python Q&A
 
-## 0.1 list, set, dict, tuple
-
 ## 0.2 range
 
 ```text
