@@ -174,57 +174,13 @@ if __name__ == '__main__':
 
 sort\(\)与sorted\(\)的不同在于，sort是在原位重新排列列表，而sorted\(\)是产生一个新的列表。
 
-```python
-students = [('john', 'A', 15), ('jane', 'B', 12), ('dave', 'B', 10)]
->>> sorted(students, key=lambda s: s[2])            # 按年龄排序
-[('dave', 'B', 10), ('jane', 'B', 12), ('john', 'A', 15)]
- 
->>> sorted(students, key=lambda s: s[2], reverse=True)       # 按降序
-[('john', 'A', 15), ('jane', 'B', 12), ('dave', 'B', 10)]
-```
-
 ## 0.9 heapq.nlargest\(n, key=None\),heapq.nsmallest\(n, key=None\) <a id="articleContentId"></a>
 
 数组中的第K个最大元素
 
 当要查找的元素个数相对比较小的时候，函数 nlargest\(\) 和 nsmallest\(\) 是很合适的。如果你仅仅想查找唯一的最小或最大（N=1）的元素的话，那么使用 min\(\) 和max\(\) 函数会更快些。类似的，如果 N 的大小和集合大小接近的时候，通常先排序这个集合然后再使用切片操作会更快点（sorted\(items\)\[:N\] 或者是 sorted\(items\)\[-N:\]）。需要在正确场合使用函数 nlargest\(\) 和 nsmallest\(\) 才能发挥它们的优势（如果N 快接近集合大小了，那么使用排序操作会更好些）。
 
-## 0.10 collections
-
-### deque
-
-```python
-from collections import deque
-queue = deque(["Eric", "John", "Michael"])
-queue.append("Terry")           # Terry 入队
-queue.append("Graham")          # Graham 入队
-queue.popleft()                 # 队首元素出队
-#输出: 'Eric'
-queue.pop()                 # 队首元素出队
-#输出: 'Graham
-```
-
-### defaultdict
-
-```python
->>> from collections import defaultdict
->>> dd = defaultdict(lambda: 'N/A')
->>> dd['key1'] = '123'
->>> dd['key1'] # key1存在
-'123'
->>> dd['key2'] # key2不存在，返回默认值
-'N/A'
-```
-
-### counter
-
-```python
-
->>> from collections import Counter
->>> c = Counter()
->>> for ch in 'programming':
-...     c[ch] = c[ch] + 1
-```
+## 0.10 collections.Counter\(\)
 
 {% embed url="https://blog.csdn.net/candice5566/article/details/107916460" %}
 
