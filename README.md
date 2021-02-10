@@ -4,3 +4,5 @@ This is [my code study note.](https://github.com/yue-wang97/CodeNote/tree/603c91
 
 You can also read on Gitbook: [https://wangyue016.gitbook.io/codenote/](https://wangyue016.gitbook.io/codenote/)
 
+Hope it helps!
+
