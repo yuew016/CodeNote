@@ -57,7 +57,7 @@ def sortIntegers(self, A):
             curnum = A[i+1] #num for insert
             preIn = i #position for insert
             while preIn >= 0 and A[preIn] > curnum:
-                A[preIn + 1 ]= A[preIn]
+                A[preIn + 1]= A[preIn]
                 preIn -= 1 
             A[preIn + 1] = curnum
         return A
