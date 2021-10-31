@@ -12,9 +12,9 @@
 
 ![](../.gitbook/assets/screen-shot-2020-10-27-at-10.33.49.png)
 
-### 
+###
 
-###   minimum-size-subarray-sum
+### &#x20; minimum-size-subarray-sum
 
 ```python
 class Solution:
@@ -34,12 +34,45 @@ class Solution:
         return ans
 ```
 
-###   Minimum Window Substring
+### &#x20; Minimum Window Substring
 
 ```python
 '''
 sliding window  
 '''
+class Solution:
+    def minWindow(self, s: str, t: str) -> str:
+        if s == None or len(s) == 0:
+            return "";
+        left, right = 0,0
+        min_len = len(s)+1
+        min_str = ""
+        count = len(t)
+        t_map = collections.Counter(t)
+        
+        for right in range(len(s)):
+            if t_map[s[right]] >0 :
+                count -= 1
+            t_map[s[right]] -= 1
+            
+            if count == 0:
+                while left < right and t_map[s[left]] < 0:
+                    t_map[s[left]] += 1
+                    left += 1
+                    
+                if right - left + 1 < min_len:
+                    min_len = right - left + 1
+                    min_str = s[left:right+1]
+                    
+                t_map[s[left]] += 1
+                count += 1
+                left += 1
+                
+        return min_str
+                    
+        
+        
+        
 from collections import Counter
 class Solution:
     def minWindow(self, s: str, t: str) -> str:
@@ -70,7 +103,7 @@ class Solution:
                 
             
         
-        
+ 
 ```
 
 ### Longest Substring with At Most K Distinct Characters
@@ -258,7 +291,7 @@ class Solution:
     
 ```
 
-## 
+##
 
 ### \283. Move Zeroes
 
@@ -492,7 +525,7 @@ class Solution:
 
 ​ • 几乎所有 Two Sum 变种
 
-哈希表\(HashMap\) vs 两根指针\(Two Pointers\)
+哈希表(HashMap) vs 两根指针(Two Pointers)
 
 对于求 2 个变量如何组合的问题
 
@@ -550,7 +583,7 @@ class Solution:
 
 ### \653. Two Sum IV - Input is a BST
 
-```text
+```
 # Definition for a binary tree node.
 # class TreeNode:
 #     def __init__(self, val=0, left=None, right=None):
@@ -891,9 +924,9 @@ class Solution:
 
 Two Sum 计数问题
 
-### Two Sum &lt;= target
+### Two Sum <= target
 
-O\(1\) 额外空间以及 O\(nlogn\) 时间复杂度
+O(1) 额外空间以及 O(nlogn) 时间复杂度
 
 ```python
 class Solution:
@@ -915,7 +948,7 @@ class Solution:
         return cnt
 ```
 
-### two sum &gt;= target
+### two sum >= target
 
 ```python
 class Solution:
@@ -939,7 +972,7 @@ class Solution:
 
 ## 6.4 **Partition**
 
-​ • Quick Select • 分成两个部分 • 分成三个部分 • 一些你没听过的\(但是面试会考的\)排序算法
+​ • Quick Select • 分成两个部分 • 分成三个部分 • 一些你没听过的(但是面试会考的)排序算法
 
 ### \561. Array Partition I
 
@@ -1056,7 +1089,7 @@ class Solution:
 
 V1：两个循环，先分成左，中右；再分成中，右
 
-V2: 统计各类别的个数（counting sort\)【必须：可数】
+V2: 统计各类别的个数（counting sort)【必须：可数】
 
 V3:三分法 one-pass algorithm using only constant space
 
@@ -1120,7 +1153,7 @@ class Solution:
 
 ### Pancake Sort
 
-Let given array be arr\[\] and size of array be n. 1\) Start from current size equal to n and reduce current size by one while it’s greater than 1. Let the current size be curr\_size. Do following for every curr\_size ……a\) Find index of the maximum element in arr\[0..curr\_szie-1\]. Let the index be ‘mi’ ……b\) Call flip\(arr, mi\) ……c\) Call flip\(arr, curr\_size-1\)
+Let given array be arr\[] and size of array be n. 1) Start from current size equal to n and reduce current size by one while it’s greater than 1. Let the current size be curr\_size. Do following for every curr\_size ……a) Find index of the maximum element in arr\[0..curr\_szie-1]. Let the index be ‘mi’ ……b) Call flip(arr, mi) ……c) Call flip(arr, curr\_size-1)
 
 ```python
 # Python3 program to 
@@ -1194,11 +1227,11 @@ printArray(arr,n)
 # This code is contributed by shreyanshi_arun.
 ```
 
-O\(n\) flip operations are performed in above code. The overall time complexity is O\(n^2\).
+O(n) flip operations are performed in above code. The overall time complexity is O(n^2).
 
 ### Sleep Sort
 
-Time: _O_\(_n_\) space: _O_\(_n_\)
+Time: _O_(_n_) space: _O_(_n_)
 
 ```python
 from time import sleep
@@ -1225,7 +1258,7 @@ if __name__ == '__main__':
 
 ### Spaghetti Sort
 
-Time: _O_\(_n_\) space: _O_\(_n_\)
+Time: _O_(_n_) space: _O_(_n_)
 
 ### Bogo Sort
 
@@ -1310,4 +1343,3 @@ class Solution:
         else:
             return nums[r+1]
 ```
-
